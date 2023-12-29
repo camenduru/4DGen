@@ -27,8 +27,8 @@ class Zero123(nn.Module):
         self.dtype = torch.float16 if fp16 else torch.float32
         self.pipe = Zero123Pipeline.from_pretrained(            
             zero123_path,
-            variant="fp16_ema" if self.fp16 else None,
             torch_dtype=self.dtype,
+            trust_remote_code=True,
         ).to(self.device)
 
         # for param in self.pipe.parameters():
